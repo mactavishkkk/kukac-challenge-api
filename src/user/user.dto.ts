@@ -14,11 +14,10 @@ export class CreateUserDTO {
 
 export class UpdateUserDTO {
     @ApiProperty()
-    email: string;
-
-    @ApiProperty()
     name: string;
 
+    @ApiProperty()
+    password: string;
 }
 
 export class ResponseUserDTO {
