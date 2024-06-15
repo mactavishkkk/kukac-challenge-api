@@ -1,6 +1,6 @@
 # Projeto
 
-Este é um projeto construído com .NestJS 10.0, Prisma 3.5, PostgreSQL e Docker.
+Este é um projeto construído com .NestJS 10.0, Prisma 5.15, PostgreSQL e Docker.
 
 este projeto foi desenvolvido seguindo algumas boas práticas da Arquitetura Limpa (Clean Architecture), Código Limpo (Clean Code) e DDD;
 
