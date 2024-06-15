@@ -43,15 +43,33 @@ export class UserService {
     }
 
     async updateUser(id: number, data: UpdateUserDTO): Promise<User> {
-        const hashedPassword = await bcrypt.hash(data.password, 10);
+        try {
+            const user = await this.prisma.user.findUnique({
+                where: { id },
+            });
 
-        return this.prisma.user.update({
-            where: { id },
-            data: {
-                name: data.name,
-                password: hashedPassword,
-            },
-        });
+            if (!user) {
+                throw new NotFoundException(`User with ID ${id} not found`);
+            }
+
+            const hashedPassword = await bcrypt.hash(data.password, 10);
+
+            return this.prisma.user.update({
+                where: { id },
+                data: {
+                    name: data.name,
+                    password: hashedPassword,
+                },
+            });
+
+        } catch (error) {
+            if (error instanceof Prisma.PrismaClientKnownRequestError) {
+                if (error.code === 'P2002') {
+                    throw new ConflictException(`Unique constraint failed on the ${error.meta.target}`);
+                }
+            }
+            throw new InternalServerErrorException('User with ID not found or an unexpected error occurred');
+        }
     }
 
     async deleteUser(id: number): Promise<{ id: number; message: string }> {
