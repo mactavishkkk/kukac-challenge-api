@@ -18,7 +18,7 @@ export class ExpenseController {
     }
 
     @Get()
-    findAll(): Promise<Expense[]> {
+    findAll(): Promise<(Expense & { user: any })[]> {
         return this.expenseService.findAllExpenses();
     }
 

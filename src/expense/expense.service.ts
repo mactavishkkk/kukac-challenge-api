@@ -13,13 +13,16 @@ export class ExpenseService {
         });
     }
 
-    async findAllExpenses(): Promise<Expense[]> {
-        return this.prisma.expense.findMany();
+    async findAllExpenses(): Promise<(Expense & { user: any })[]> {
+        return this.prisma.expense.findMany({
+            include: { user: true },
+        });
     }
 
     async findExpenseById(id: number): Promise<Expense | null> {
         const expense = await this.prisma.expense.findUnique({
             where: { id },
+            include: { user: true },
         });
 
         if (!expense) {
