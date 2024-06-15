@@ -19,6 +19,8 @@ model User {
   name     String
   password String
   expenses Expense[]
+
+  @@map("users")
 }
 
 model Expense {
@@ -30,4 +32,6 @@ model Expense {
   updatedAt DateTime @updatedAt
   userId    Int
   user      User     @relation(fields: [userId], references: [id])
+
+  @@map("expenses")
 }
