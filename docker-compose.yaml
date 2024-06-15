@@ -1,0 +1,35 @@
+networks:
+  dev:
+    driver: bridge
+
+services:
+  # kukac-api:
+  #   container_name: kukac-api
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - '3001:3000'
+  #   environment:
+  #     - DB_HOST=192.168.1.5
+  #     - DB_PORT=5464
+  #     - DB_USER=postgres
+  #     - DB_PASSWORD=postgres
+  #     - DB_NAME=kukacdb
+  #   depends_on:
+  #     - kukac-db
+
+  kukac-db:
+    container_name: kukac-db
+    build:
+      dockerfile: Dockerfile.db
+    ports:
+      - "5464:5432"
+    restart: always
+    volumes:
+      - app_data:/var/lib/postgresql/data
+    networks:
+      - dev
+
+volumes:
+  app_data:

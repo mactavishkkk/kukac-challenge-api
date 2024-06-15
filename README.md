@@ -1,73 +1,69 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Projeto
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este é um projeto construído com .NestJS 10.0, Prisma 3.5, PostgreSQL e Docker.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+este projeto foi desenvolvido seguindo algumas boas práticas da Arquitetura Limpa (Clean Architecture), Código Limpo (Clean Code) e DDD;
 
-## Description
+## Pré-requisitos
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Certifique-se de ter o Docker e o Docker Compose instalados em sua máquina.
 
-## Installation
+- Docker: [Instalação do Docker](https://docs.docker.com/get-docker/)
+- Docker Compose: [Instalação do Docker Compose](https://docs.docker.com/compose/install/)
+- Ferramenta de versionamento: [Instalação do Git](https://git-scm.com/)
+
+## Como executar
+
+1. Clone o repositório:
 
 ```bash
-$ npm install
+git clone git@github.com:mactavishkkk/kukac-challenge-api.git
 ```
 
-## Running the app
+2. Navegue até o diretório dos arquivos de construção:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cd kukac-challenge-api
 ```
 
-## Test
+3. Você precisará do arquivo `.env` em seu diretório raiz, basta renomear o `.env.example` para o mesmo ou criar um novo:
+
+4. Construa as imagens para os ambientes com docker, no terminal use:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker compose build
 ```
 
-## Support
+5. Agora basta subir elas com:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+docker compose up -d
+```
 
-## Stay in touch
+6. Pronto, agora você já poderá acessar a rota de boas vindas em seu navegador:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+https://localhost:3001/
+```
 
-## License
+---
 
-Nest is [MIT licensed](LICENSE).
+## OBS:
+
+Por algum motivo, que confesso ainda não saber o porquê, alguns sistemas operacionais como distribuições linux não aceitam a palavra "localhost" para se referir ao IP local da máquina.
+
+então caso depois de executar a etapa **4** o aplicativo não subir, você precisará pegar o seu IP relativo que é diferente do **localhost**(127.0.0.1), é simples:
+
+1. Em seu terminal acesse-o com:
+
+```bash
+hostname -I
+```
+
+ele geralmente é o único ou o primeiro de uma lista, ele se parecerá com isto: `192.168.1.7 172.20.0.1 172.19.0`, nosso IP é o `192.168.1.7`.
+
+agora basta acessar o arquivo `kukac-challenge-api.git/docker-compose.yaml` e na string de conexão substituir o parâmetro `- DB_HOST=localhost` por `Host=192.168.1.7` ou vice-versa, você também deverá fazer esta substituição no arquivo `.env`. Pronto, volte ao passo **3** e continue novamente.
+
+## Documentação da API
+
+A documentação da API pode ser encontrada em `http://localhost:3001/swagger/api`, onde você pode encontrar informações sobre os endpoints disponíveis, parâmetros de solicitação, respostas e exemplos de uso.
