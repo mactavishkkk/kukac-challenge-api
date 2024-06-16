@@ -18,6 +18,8 @@ services:
       - DB_NAME=kukac-db
     depends_on:
       - kukac-db
+    networks:
+      - dev
 
   kukac-db:
     container_name: kukac-db

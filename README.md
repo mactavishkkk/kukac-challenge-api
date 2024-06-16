@@ -52,7 +52,7 @@ https://localhost:3001/
 
 Por algum motivo, que confesso ainda não saber o porquê, alguns sistemas operacionais como distribuições linux não aceitam a palavra "localhost" para se referir ao IP local da máquina.
 
-então caso depois de executar a etapa **4** o aplicativo não subir, você precisará pegar o seu IP relativo que é diferente do **localhost**(127.0.0.1), é simples:
+então caso depois de executar a etapa **5** o aplicativo não subir, você precisará pegar o seu IP relativo que é diferente do **localhost**(127.0.0.1), é simples:
 
 1. Em seu terminal acesse-o com:
 
@@ -62,7 +62,7 @@ hostname -I
 
 ele geralmente é o único ou o primeiro de uma lista, ele se parecerá com isto: `192.168.1.7 172.20.0.1 172.19.0`, nosso IP é o `192.168.1.7`.
 
-agora basta acessar o arquivo `kukac-challenge-api.git/docker-compose.yaml` e na string de conexão substituir o parâmetro `- DB_HOST=localhost` por `Host=192.168.1.7` ou vice-versa, você também deverá fazer esta substituição nas strings, no arquivo `.env`. Pronto, volte ao passo **3** e continue novamente.
+agora basta acessar o arquivo `kukac-challenge-api.git/docker-compose.yaml` e na string de conexão substituir o parâmetro `- DB_HOST=localhost` por `Host=192.168.1.7` ou vice-versa, você também deverá fazer esta substituição nas strings, no arquivo `.env`. Pronto, volte ao passo **4** e continue novamente.
 
 ## Documentação da API
 
