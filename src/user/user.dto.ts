@@ -30,3 +30,12 @@ export class ResponseUserDTO {
     @ApiProperty()
     name: string;
 }
+
+export class AuthUserDTO {
+    @ApiProperty()
+    email: string;
+
+    @ApiProperty()
+    password: string;
+
+}
