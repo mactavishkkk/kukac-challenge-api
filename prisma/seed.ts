@@ -84,6 +84,53 @@ async function main() {
     });
 
     console.log({ expense, expense1, expense2, expense3, expense4 });
+
+    const rent = await prisma.rent.create({
+        data: {
+            name: 'Salário',
+            date: new Date(),
+            value: 1340.72,
+            userId: user.id,
+        },
+    });
+
+    const rent1 = await prisma.rent.create({
+        data: {
+            name: 'Venda de brownies',
+            date: new Date(),
+            value: 230.32,
+            userId: user.id,
+        },
+    });
+
+    const rent2 = await prisma.rent.create({
+        data: {
+            name: 'Sorteio',
+            date: new Date(),
+            value: 50,
+            userId: user.id,
+        },
+    });
+
+    const rent3 = await prisma.rent.create({
+        data: {
+            name: 'Achado na rua',
+            date: new Date(),
+            value: 72,
+            userId: user1.id,
+        },
+    });
+
+    const rent4 = await prisma.rent.create({
+        data: {
+            name: 'Cashback',
+            date: new Date(),
+            value: 150,
+            userId: user2.id,
+        },
+    });
+
+    console.log({ rent, rent1, rent2, rent3, rent4 });
 }
 
 main()

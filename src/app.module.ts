@@ -6,9 +6,10 @@ import { ExpenseModule } from './expense/expense.module';
 import { PrismaService } from './prisma/prisma.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
+import { RentModule } from './rent/rent.module';
 
 @Module({
-  imports: [UserModule, ExpenseModule, PrismaModule, AuthModule],
+  imports: [UserModule, ExpenseModule, PrismaModule, AuthModule, RentModule],
   controllers: [AppController],
   providers: [AppService, PrismaService],
 })
